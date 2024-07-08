@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form th:action="@{|/update/${foundBoard.id}|}" method="post" name="updateForm">
+  <input type="hidden" name="id" th:value="${foundBoard.id}">
+  writer: <input type="text" name="boardWriter" th:value="${foundBoard.boardWriter}" readonly><br>
+  title: <input type="text" name="boardTitle" th:value="${foundBoard.boardTitle}"><br>
+  pass: <input type="text" name="boardPassword" id="board-password"><br>
+  contents: <textarea name="boardContents" cols="30" rows="10" th:text="${foundBoard.boardContents}"></textarea><br>
+  <input type="button" value="수정" onclick="board_update()">
+</form>
+</body>
+<script th:inline="javascript">
+  const board_update = () => {
+    const boardPassword = document.getElementById("board-password").value;
+    const dbPassword = [[${foundBoard.boardPassword}]];
+    if (boardPassword == dbPassword) {
+      updateForm.submit();
+    } else {
+      alert("비밀번호가 틀립니다!!");
+    }
+  }
+</script>
+</html>
