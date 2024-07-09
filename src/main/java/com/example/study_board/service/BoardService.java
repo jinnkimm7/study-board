@@ -31,4 +31,8 @@ public class BoardService {
     public void update(BoardDTO updatedBoardDTO) {
         boardRepository.update(updatedBoardDTO);
     }
+
+    public void delete(Long id) {
+        boardRepository.delete(id);
+    }
 }
